@@ -14,27 +14,31 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Setup Java JDK
-        uses: actions/setup-java@v3
         with:
-          distribution: 'zulu'
-          java-version: '17'
+          lfs: true
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v2
+      - name: Cache Unity Library
+        uses: actions/cache@v3
+        with:
+          path: Library
+          key: Library-${{ hashFiles('Assets/**', 'Packages/**') }}
+          restore-keys: |
+            Library-
 
-      - name: Build Unity Project
+      - name: Unity Android Builder
         uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: Android
-          buildName: LIOS_Classic_F2W
+          buildName: LIOS_Classic_1GB
           buildsPath: build/Android
           unityVersion: 2022.3.20f1
-          customParameters: -quit -batchmode -nographics -noUpm
+          allowExecution: true
 
-      - name: Upload APK
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
+        if: always()
         with:
           name: LIOS-Classic-Android-APK
-          path: build/Android/LIOS_Classic_F2W.apk
+          path: build/Android/
