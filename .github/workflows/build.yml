@@ -12,13 +12,11 @@ jobs:
     name: Build Android APK Pipeline
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout Repository
-      - name: Checkout Repository
+      - name: Checkout Code
         uses: actions/checkout@v4
         with:
           lfs: true
 
-      # 2. Cache Unity Library (Build Speed Up)
       - name: Cache Unity Library
         uses: actions/cache@v3
         with:
@@ -26,26 +24,21 @@ jobs:
           key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**') }}
           restore-keys: |
             Library-Android-
-            Library-
 
-      # 3. High-Level Unity Builder with Fallback Flags
-      - name: Build Unity Project
+      - name: Unity Auto-Login & Build
         uses: game-ci/unity-builder@v2
         env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
         with:
           targetPlatform: Android
           buildName: LIOS_Classic_1GB
           buildsPath: build/Android
           unityVersion: 2022.3.20f1
           androidAppBundle: false
-          androidExportType: androidPackage
-          customParameters: -quit -batchmode -nographics -disable-gpu-skinning
 
-      # 4. Upload APK Artifact
-      - name: Upload APK Package
+      - name: Upload APK
         uses: actions/upload-artifact@v3
         if: always()
         with:
