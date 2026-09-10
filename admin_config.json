@@ -7,5 +7,31 @@
   "mandatoryNotice": "Welcome to LIOS Survival! 120 FPS High Performance Active.",
   "isKeySystemActive": true,
   "secretMasterKey": "LIOS-120FPS-PRO-KEY",
-  "keyGetLink": "https://your-website.com/get-key"
+  "keyGetLink": "https://your-website.com/get-key",
+
+  "developerUIDs": [
+    "984729103847",
+    "837492018374"
+  ],
+
+  "weaponUpgradeSystem": {
+    "tradeTicketsPerLevel": 5,
+    "coinsPerLevel": 2000,
+    "maxWeaponLevel": 7
+  },
+
+  "socialServer": {
+    "isSocialServerActive": true,
+    "worldChatRegion": "Asia-IN",
+    "maxClanMembers": 50,
+    "allowFriendRequests": true
+  },
+
+  "topUpPackages": [
+    { "packageID": "topup_50", "priceINR": 50, "blueTickets": 50, "tradeTickets": 5, "bonusGems": 5, "coins": 500 },
+    { "packageID": "topup_100", "priceINR": 100, "blueTickets": 110, "tradeTickets": 12, "bonusGems": 15, "coins": 1200 },
+    { "packageID": "topup_250", "priceINR": 250, "blueTickets": 300, "tradeTickets": 35, "bonusGems": 50, "coins": 3000 },
+    { "packageID": "topup_500", "priceINR": 500, "blueTickets": 650, "tradeTickets": 80, "bonusGems": 120, "coins": 7000 },
+    { "packageID": "topup_1000", "priceINR": 1000, "blueTickets": 1400, "tradeTickets": 200, "bonusGems": 300, "coins": 15000 }
+  ]
 }
