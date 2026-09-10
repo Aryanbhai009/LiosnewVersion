@@ -1,0 +1,11 @@
+{
+  "activeUPI": "9131773997-1@fam",
+  "merchantName": "LIOS Survival Game",
+  "isMaintenance": false,
+  "maintenanceMessage": "Server Under Maintenance. Back online in 30 mins!",
+  "latestGameVersion": "1.0.0",
+  "mandatoryNotice": "Welcome to LIOS Survival! 120 FPS High Performance Active.",
+  "isKeySystemActive": true,
+  "secretMasterKey": "LIOS-120FPS-PRO-KEY",
+  "keyGetLink": "https://your-website.com/get-key"
+}
