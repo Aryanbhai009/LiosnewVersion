@@ -18,16 +18,17 @@ jobs:
           lfs: true
 
       - name: Cache Unity Library
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: Library
           key: Library-Android-${{ hashFiles('Assets/**', 'Packages/**') }}
           restore-keys: |
             Library-Android-
 
-      - name: Unity Auto-Login & Build
+      - name: Build Unity Project
         uses: game-ci/unity-builder@v2
         env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
           UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
@@ -38,8 +39,8 @@ jobs:
           unityVersion: 2022.3.20f1
           androidAppBundle: false
 
-      - name: Upload APK
-        uses: actions/upload-artifact@v3
+      - name: Upload APK Package
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: LIOS-Classic-Android-APK
